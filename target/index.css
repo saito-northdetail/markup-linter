@@ -1,0 +1,13 @@
+body {
+  width: 1200px;
+}
+body {
+  min-width: 800px;
+}
+
+.c-card {
+  height: auto;
+  font-size: 20px;
+  background: #FFF;
+  width: 100%;
+}

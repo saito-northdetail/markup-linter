@@ -1,0 +1,20 @@
+{
+  "name": "markup-linter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "html:lint": "markuplint target/*.html",
+    "html:fix": "markuplint target/*.html --fix",
+    "css:lint": "stylelint target/*.css",
+    "css:fix": "stylelint target/*.css --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "markuplint": "^4.9.2",
+    "stylelint": "^16.8.0",
+    "stylelint-config-recess-order": "^5.0.1",
+    "stylelint-config-standard": "^36.0.1"
+  }
+}

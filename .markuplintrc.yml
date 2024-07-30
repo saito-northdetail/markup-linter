@@ -1,0 +1,53 @@
+# パーサー
+# parser:
+#   "\\.ejs$": "@markuplint/ejs-parser" # EJSに対応させたい場合
+# 基本ルール： https://markuplint.dev/ja/docs/guides/presets
+extends:
+  - markuplint:html-standard
+  - markuplint:rdfa
+# 各ルールの設定
+rules:
+  # 必要な属性は記述(詳細はnodeRulesに記載)
+  required-attr: true
+  # labelにコントロールはつける
+  label-has-control: true
+  # h1要素は配置する
+  required-h1: true
+  # 特殊記号はエスケープする(URLにも引っかかるので結構難的)
+  character-reference: true
+  # headに必須設定を行う(viewport/description/keywords/ogp各種/favicon/canonical)
+  required-element:
+    - meta[name="viewport"]
+    - meta[name="description"]
+    - meta[name="keywords"]
+    - meta[property="og:type"]
+    - meta[property="og:url"]
+    - meta[property="og:image"]
+    - meta[property="og:site_name"]
+    - meta[property="og:description"]
+    - link[rel="icon"]
+    - link[rel="canonical"]
+# 各セレクタに対するルール
+nodeRules:
+  # htmlにはlangの設定が必要
+  - selector: html
+    rules:
+      required-attr: lang
+  # ogpタグに設定できるプロパティはpropertyとcontentのみ
+  - selector: meta[property]
+    rules:
+      invalid-attr:
+        options:
+          allowAttrs:
+            - property
+            - content
+  # imgにはaltの設定が必要
+  - selector: img
+    rules:
+      required-attr:
+        - alt
+        - src
+  # iframeにはloadingプロパティが必要
+  # - selector: iframe
+  #   rules:
+  #     required-attr: loading
